@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
-
+// dd
   return (
     <nav className="bg-black text-white shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
