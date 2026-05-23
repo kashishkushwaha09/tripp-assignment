@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/upload";
+const API_URL = "https://tripp-assignment-1.onrender.com/api/upload";
 
 export const uploadDocument = async (file, token) => {
   const formData = new FormData();
