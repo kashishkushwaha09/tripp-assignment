@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -5,30 +6,68 @@ const Navbar = () => {
   const { user, logout } = useAuth();
 
   return (
-    <nav className="flex items-center justify-between bg-black p-4 text-white">
-      <Link to="/">Travel Planner</Link>
+    <nav className="bg-black text-white shadow-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        
+        {/* Logo */}
+        <Link
+          to="/"
+          className="text-2xl font-bold tracking-wide"
+        >
+          Travel Planner
+        </Link>
 
-      <div className="flex gap-4">
-        {!user ? (
-          <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
-          </>
-        ) : (
-          <>
-            <p>{user.user.name}</p>
+        {/* Right Side */}
+        <div className="flex items-center gap-4">
+          {!user ? (
+            <>
+              <Link
+                to="/login"
+                className="hover:text-blue-400 transition"
+              >
+                Login
+              </Link>
 
-            <button
-              onClick={logout}
-              className="rounded bg-red-500 px-3 py-1"
-            >
-              Logout
-            </button>
-          </>
-        )}
+              <Link
+                to="/register"
+                className="hover:text-blue-400 transition"
+              >
+                Register
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/upload"
+                className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium hover:bg-blue-700 transition"
+              >
+                Upload Docs
+              </Link>
+
+              <Link
+                to="/dashboard"
+                className="hover:text-blue-400 transition"
+              >
+                Dashboard
+              </Link>
+
+              <p className="text-gray-300 font-medium">
+                {user.name}
+              </p>
+
+              <button
+                onClick={logout}
+                className="rounded-lg bg-red-500 px-4 py-2 text-sm font-medium hover:bg-red-600 transition"
+              >
+                Logout
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );
 };
 
 export default Navbar;
+
