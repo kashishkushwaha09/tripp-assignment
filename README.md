@@ -178,13 +178,10 @@ npm start
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
+GEMINI_API_KEY=key
 ```
 
-## Frontend `.env`
 
-```env
-VITE_API_URL=https://tripp-assignment-1.onrender.com
-```
 
 ---
 
