@@ -24,15 +24,15 @@ const itinerarySchema = new mongoose.Schema(
       default: {},
     },
 
-   shareId: {
-  type: String,
-  default: uuidv4,
-  unique: true,
-}
+    shareId: {
+      type: String,
+      default: uuidv4,
+      unique: true,
+    },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 module.exports = mongoose.model("Itinerary", itinerarySchema);
