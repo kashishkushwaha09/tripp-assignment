@@ -46,7 +46,8 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteItinerary(id, token);
+        if(!user?.token) return;
+      await deleteItinerary(id, user?.token);
 
       setItineraries((prev) =>
         prev.filter((item) => item._id !== id)

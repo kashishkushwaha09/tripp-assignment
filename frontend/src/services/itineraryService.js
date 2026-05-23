@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/itinerary";
+const API_URL = "https://tripp-assignment-1.onrender.com/api/itinerary";
 
 export const getUserItineraries = async (token) => {
   const response = await axios.get(API_URL, {
