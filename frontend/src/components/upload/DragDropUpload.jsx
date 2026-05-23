@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { uploadDocument } from "../../services/uploadService";
 import { useAuth } from "../../context/AuthContext";
-
+import { useNavigate } from "react-router-dom";
 const DragDropUpload = () => {
   const inputRef = useRef(null);
-
+const navigate = useNavigate();
   const [dragging, setDragging] = useState(false);
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -57,10 +57,12 @@ const DragDropUpload = () => {
       setLoading(true);
 
       const data = await uploadDocument(file, token);
-
-      toast.success(data.message);
-
+    
       console.log(data);
+      if(data?.success){
+      toast.success("Itinerary generated successfully");
+      navigate("/");
+      }
     } catch (error) {
       toast.error(error.response?.data?.message || "Upload failed");
     } finally {

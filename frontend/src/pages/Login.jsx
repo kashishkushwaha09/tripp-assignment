@@ -25,9 +25,7 @@ const Login = () => {
 
     try {
       const { data } = await API.post("/users/login", formData);
-
       login(data);
-
       navigate("/");
     } catch (error) {
       alert(error.response.data.message);
