@@ -1,3 +1,10 @@
+const Itinerary = require("../models/Itinerary");
+const {
+  generateStructuredTravelData,
+  generateTravelItinerary,
+} = require("../services/aiService");
+const { extractDocumentText } = require("../services/extractionService");
+
 const uploadDocument = async (req, res) => {
   try {
     if (!req.file) {
@@ -6,17 +13,28 @@ const uploadDocument = async (req, res) => {
         message: "No file uploaded",
       });
     }
+    const { rawText, fileType } = await extractDocumentText(req.file);
+    console.log("rawText", rawText);
 
-    return res.status(200).json({
+    const extractedData = await generateStructuredTravelData(rawText);
+    console.log("EXTRACTED DATA:");
+    console.log(extractedData);
+    // STEP 3 → Generate itinerary
+    const itinerary = await generateTravelItinerary(extractedData);
+    console.log("ITINERARY:");
+    console.log(itinerary);
+    const savedItinerary = await Itinerary.create({
+      userId: req.user._id,
+      uploadedFiles: [req.file.path],
+      extractedData,
+      itinerary,
+      destination: extractedData.destination || "",
+      title: itinerary.title || `${extractedData.destination} Trip`,
+    });
+    return res.status(201).json({
       success: true,
-      message: "File uploaded successfully",
-      file: {
-        filename: req.file.filename,
-        originalname: req.file.originalname,
-        mimetype: req.file.mimetype,
-        size: req.file.size,
-        path: req.file.path,
-      },
+      message: "Travel data extracted successfully",
+      data: savedItinerary,
     });
   } catch (error) {
     return res.status(500).json({
@@ -25,4 +43,4 @@ const uploadDocument = async (req, res) => {
     });
   }
 };
-module.exports={uploadDocument};
+module.exports = { uploadDocument };

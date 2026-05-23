@@ -8,11 +8,7 @@ const itinerarySchema = new mongoose.Schema(
       required: true,
     },
 
-    uploadedFiles: [
-      {
-        type: String,
-      },
-    ],
+    uploadedFiles: { type: [String], default: [] },
 
     extractedData: {
       type: mongoose.Schema.Types.Mixed,
@@ -28,6 +24,15 @@ const itinerarySchema = new mongoose.Schema(
       type: String,
       default: uuidv4,
       unique: true,
+    },
+    destination: {
+      type: String,
+      default: "",
+    },
+
+    title: {
+      type: String,
+      default: "",
     },
   },
   {
