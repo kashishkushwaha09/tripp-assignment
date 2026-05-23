@@ -17,13 +17,17 @@ const {
 } = require(
   "../controllers/itineraryController"
 );
-
+router.get(
+  "/share/:shareId",
+  getSharedItinerary
+);
 // User history
 router.get(
   "/",
   protect,
   getUserItineraries
 );
+
 
 // Single itinerary
 router.get(
@@ -40,10 +44,7 @@ router.delete(
 );
 
 // Public share route
-router.get(
-  "/share/:shareId",
-  getSharedItinerary
-);
+
 
 module.exports = router;
 

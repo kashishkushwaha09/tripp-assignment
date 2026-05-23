@@ -9,7 +9,7 @@ const Navbar = () => {
     <nav className="bg-black text-white shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         
-        {/* Logo */}
+        
         <Link
           to="/"
           className="text-2xl font-bold tracking-wide"
@@ -17,7 +17,7 @@ const Navbar = () => {
           Travel Planner
         </Link>
 
-        {/* Right Side */}
+       
         <div className="flex items-center gap-4">
           {!user ? (
             <>
@@ -45,7 +45,7 @@ const Navbar = () => {
               </Link>
 
               <Link
-                to="/dashboard"
+                to="/"
                 className="hover:text-blue-400 transition"
               >
                 Dashboard

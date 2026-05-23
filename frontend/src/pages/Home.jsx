@@ -30,8 +30,7 @@ const Home = () => {
   const fetchItineraries = async () => {
     try {
         const token=user?.token;
-         console.log("user",user);
-        console.log("token",token);
+       
         if(!token) return;
       const data = await getUserItineraries(user?.token);
 

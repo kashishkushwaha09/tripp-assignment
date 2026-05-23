@@ -1,12 +1,12 @@
 import { useState } from "react";
 import API from "../api/axios";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const { login } = useAuth();
+  const { user,login } = useAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -31,7 +31,9 @@ const Login = () => {
       alert(error.response.data.message);
     }
   };
-
+  if(user?.token){
+     return <Navigate to="/" replace />;
+  }
   return (
     <div className="flex min-h-screen items-center justify-center">
       <form
